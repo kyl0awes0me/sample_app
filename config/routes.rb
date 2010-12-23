@@ -1,11 +1,16 @@
 SampleApp::Application.routes.draw do
-  get "pages/home"
+  match '/contact', :to => 'pages#contact'
+  match '/about',   :to => 'pages#about'
+    # What isn’t obvious is that match ’/about’ also automatically creates named routes for use in the controllers and views:
+    # about_path => '/about'
+    # about_url  => 'http://localhost:3000/about'
+  match '/help',    :to => 'pages#help'
+  
+  root :to => 'pages#home'
+    # special case for '/' root url, also gives these helpers
+    # root_path => '/'
+    # root_url  => 'http://localhost:3000/'
 
-  get "pages/contact"
-  
-  get "pages/about"
-  
-  get "pages/help"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
